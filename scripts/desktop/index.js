@@ -15,6 +15,7 @@ define([
     "desktop/color-selector",
     "desktop/issue-panel",
     "desktop/overview-panel",
+    "desktop/receive-panel",
     "desktop/send-panel",
 	"desktop/testnet-handler",
     "desktop/transaction-panel",
@@ -31,6 +32,7 @@ define([
              ColorSelector,
              IssuePanel,
 			 OverviewPanel,
+			 ReceivePanel,
              SendPanel,
 			 TestnetHandler,
              TransactionPanel,
@@ -209,6 +211,10 @@ define([
                                             exitNode, colorSelector);
 
         transactionPanel = TransactionPanel.makeTransactionPanel();
+
+		var receivePanel = ReceivePanel.makeReceivePanel();
+		receivePanel.render();
+		MainPage.attachPanel(receivePanel.$el);
 
         settingsDialog = SettingsDialog.makeSettingsDialog(allowedColors,
 							   colordefServers,

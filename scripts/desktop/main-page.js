@@ -44,6 +44,9 @@ define([
             $('#exitnode_status').removeClass('unknown error warning ok');
             $('#exitnode_status').addClass(statusClass);
         },
+		attachPanel = function ($element) {
+			$('#tabs').append($element);
+		},
         render = function () {
             initHtmlPage();
 			$('#nav .settings').click(function () {
@@ -52,6 +55,7 @@ define([
 			});			
         };
 	api = {
+		attachPanel: attachPanel,
         render: render,
         setConnectionInfo: setConnectionInfo,
         setConnectionStatus: setConnectionStatus,
