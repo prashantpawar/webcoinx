@@ -23,7 +23,6 @@ define([
             //     .filter('#nav_send_money')
             //     .button('option', 'icons', {primary: "icon-bitcoin-send"})
             //     .end();
-
             $('#tabs').tabs();
         },
         initmessages = function () {
@@ -46,6 +45,7 @@ define([
         },
 		attachPanel = function ($element) {
 			$('#tabs').append($element);
+            $('#tabs').tabs();
 		},
         render = function () {
             initHtmlPage();
