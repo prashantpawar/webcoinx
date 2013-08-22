@@ -1145,3 +1145,23 @@ table.txlist tr td.detail img {
 #dialog_settings form p {
 	clear: none;
 }
+
+/* Receive panel*/
+
+
+.block .receive-panel__color-table .receive-panel__color__balance {
+  width: 120px;
+  margin: 0 10px;
+  text-align: right;
+}
+
+.block .receive-panel__color-table .receive-panel__color__action {
+  text-align: center;
+}
+.receive-panel__color__action a {
+  text-decoration: underline;
+}
+
+.receive-panel__clone-row {
+	display: none;
+}
