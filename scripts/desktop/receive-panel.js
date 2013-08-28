@@ -11,15 +11,28 @@ define([
 		application,
 		$addColorButton,
 		$colorCloneRow,
-		addColorRow = function () {
-			var newRow = $colorCloneRow.clone().show();
+		addColorRow = function (color) {
+			var newRow = $colorCloneRow.clone(),
+				colorField = $('.receive-panel__color__name', newRow);
+			colorField.text(color.name);
+			newRow.show();
 			$colorCloneRow.parent().append(newRow);
+		},
+		addColorCallback = function () {
+			var color = AddColorDialog.getColor();
+			AddColorDialog.close();
+			addColorRow(color);
 		},
 		addColorClick = function (evt) {
 			evt.preventDefault();
-			AddColorDialog.init(application).render().open();
 
-			addColorRow();
+			AddColorDialog.init(application).render();
+
+			AddColorDialog.open();
+			// $(AddColorDialog).bind(AddColorDialog.COLOR_SELECT_EVENT,
+			// addColorCallback);
+
+			//addColorRow();
 		},
 		hideClick = function (evt) {
 			evt.preventDefault();
@@ -30,6 +43,9 @@ define([
 			api.$el.on('click',
 				'.receive-panel__color__hide-button',
 				hideClick);
+			$(AddColorDialog).bind(AddColorDialog.COLOR_SELECT_EVENT,
+								   addColorCallback);
+
 		},
 		render = function () {
 			var html = new EJS({url: 'views/receive.ejs'}).render(),

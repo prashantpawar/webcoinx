@@ -16,7 +16,7 @@ define([
 		validate = function () {
 			//Returns name true if OK, or false
 			name = $searchField.val();
-			return colorByName.hasOwnKey(name) && name;
+			return colorByName.hasOwnProperty(name) && name;
 		},
 		getColor = function () {
 			var name = validate();
@@ -24,7 +24,7 @@ define([
 		},
 		addButtonClick = function (evt) {
 			if (validate()) {
-				api.trigger(COLOR_SELECT_EVENT, getColor());
+				$(api).trigger(COLOR_SELECT_EVENT, getColor());
 			}
 		},
         renderShowAllButton = function () {
@@ -55,6 +55,9 @@ define([
                 });
         },
         render = function () {
+			if ($dom) {
+				return api;
+			}
             var html = new EJS({url: 'views/add-color.ejs'}).render();
             $dom = $(html);
 
@@ -86,13 +89,14 @@ define([
                 minLength: 0
             });
         },
+		colorDefCallback = function (e, d) {
+                setColors(d);
+        },
         startGetColors = function () {
             var colorMan = application.getColorMan(),
                 servers = application.getColorDefServers(),
                 callback = function () {};
-            $(colorMan).bind('colordefUpdate', function (e, d) {
-                setColors(d);
-            });
+            $(colorMan).bind('colordefUpdate', colorDefCallback);
             colorMan.reloadColors(servers, callback);
         },
         init = function (app) {
