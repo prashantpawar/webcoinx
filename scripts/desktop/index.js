@@ -84,8 +84,14 @@ define([
 		var app = {
 			getWallet : function () {
 				return wallet;
+			},
+			getColorMan: function () {
+				return colorMan;
+			},
+			getColorDefServers: function () {
+				return colordefServers;
 			}
-		}
+		};
 
         colorSelector = ColorSelector.makeColorSelector(allowedColors);
 
@@ -212,7 +218,7 @@ define([
 
         transactionPanel = TransactionPanel.makeTransactionPanel();
 
-		var receivePanel = ReceivePanel.makeReceivePanel();
+		var receivePanel = ReceivePanel.makeReceivePanel(app);
 		receivePanel.render();
 		MainPage.attachPanel(receivePanel.$el);
 

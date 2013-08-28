@@ -2,10 +2,13 @@
 /*global define*/
 
 define([
-    "jquery"
-], function ($) {
+    "jquery",
+	"desktop/add-color-dialog"
+], function ($, 
+			 AddColorDialog) {
 
 	var api = {},
+		application,
 		$addColorButton,
 		$colorCloneRow,
 		addColorRow = function () {
@@ -14,6 +17,8 @@ define([
 		},
 		addColorClick = function (evt) {
 			evt.preventDefault();
+			AddColorDialog.init(application).render().open();
+
 			addColorRow();
 		},
 		hideClick = function (evt) {
@@ -42,7 +47,8 @@ define([
 	api.$el = undefined;
 
 	return {
-		makeReceivePanel: function () {
+		makeReceivePanel: function (theApp) {
+			application = theApp;
 			return api;
 		}
 	};
