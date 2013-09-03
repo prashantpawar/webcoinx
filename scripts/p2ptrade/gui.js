@@ -101,8 +101,13 @@ define(
                             return;
                         }
                         
+                        var self_offer = false;
+                        if(self.checkOffer(offer)) {
+                            self_offer = true;
+                        }
+                        
                         if (button) {
-                            if(self.checkOffer(offer)) {
+                            if(self_offer) {
                                 $btn = $('<button>').addClass('btn btn-inverse btn-block')
                                     .text('Cancel')
                                     .click(function () {
@@ -126,6 +131,9 @@ define(
                         $row = $('<tr>')
                             .append($('<td>').text(self.cm.formatValueU(quantity.value, quantity.colorid)))
                             .append($('<td>').text(self.cm.formatValueU(price.value, price.colorid)));
+                        if(self_offer) {
+                          $row.addClass('info');
+                        }
                         if ($btn) {
                             $row.append($('<td>').append($btn));
                         }
