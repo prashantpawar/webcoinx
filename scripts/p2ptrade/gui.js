@@ -91,35 +91,51 @@ define(
                             target = asks;
                             quantity = offer.A;
                             price = offer.B;
-                            op = "buy";
+                            op = "Fill buy";
                         } else if (offer.B.colorid === self.colorid && offer.A.colorid === false) {
                             target = bids;
                             quantity = offer.B;
                             price = offer.A;
-                            op = "sell";
+                            op = "Fill sell";
                         } else {
                             return;
                         }
-
+                        
+                        var self_offer = false;
+                        if(self.checkOffer(offer)) {
+                            self_offer = true;
+                        }
+                        
                         if (button) {
-                            $btn = $('<button>').addClass('btn btn-primary btn-block')
-                                .text(op)
-                                .click(function () {
-                                    var a = self.cm.formatValue(offer.A.value, offer.A.colorid),
-                                        b = self.cm.formatValue(offer.B.value, offer.B.colorid),
-                                        quantityAsText = self.cm.formatValue(quantity.value, quantity.colorid),
-                                        priceAsText = self.cm.formatValue(price.value, price.colorid),
-                                        amountField = $('#' + op + "amt"),
-                                        priceField = $('#' + op +  'price');
-                                    amountField.val(quantityAsText);
-                                    priceField.val(priceAsText);
-                                });
+                            if(self_offer) {
+                                $btn = $('<button>').addClass('btn btn-inverse btn-block')
+                                    .text('Cancel')
+                                    .click(function () {
+                                        console.log('Add code to cancel offer here');
+                                    });
+                            } else {
+                                $btn = $('<button>').addClass('btn btn-primary btn-block')
+                                    .text(op)
+                                    .click(function () {
+                                        var a = self.cm.formatValue(offer.A.value, offer.A.colorid),
+                                            b = self.cm.formatValue(offer.B.value, offer.B.colorid),
+                                            quantityAsText = self.cm.formatValue(quantity.value, quantity.colorid),
+                                            priceAsText = self.cm.formatValue(price.value, price.colorid),
+                                            amountField = $('#' + op + "amt"),
+                                            priceField = $('#' + op +  'price');
+                                          amountField.val(quantityAsText);
+                                          priceField.val(priceAsText);
+                                    });
+                            }
                         }
                         $row = $('<tr>')
                             .append($('<td>').text(self.cm.formatValueU(quantity.value, quantity.colorid)))
                             .append($('<td>').text(self.cm.formatValueU(price.value, price.colorid)));
+                        if(self_offer) {
+                          $row.addClass('info');
+                        }
                         if ($btn) {
-                            $row.append($btn);
+                            $row.append($('<td>').append($btn));
                         }
                         target.append($row);
                     };
@@ -161,6 +177,14 @@ define(
                 msgHub.empty();
             }
         };
+        
+        P2pgui.prototype.checkOffer = function (offer) {
+          if(offer.A.address == this.ewallet.getAddress(offer.A.colorid, false)) {
+            return true;
+          }
+          
+          return false;
+        }
 
         return P2pgui;
     }
