@@ -470,8 +470,8 @@ a:hover {
 	background: #fbfbfb;
 }
 	
-.block table tr td,
-.block table tr th {
+.block table td,
+.block table th {
 	border-bottom: 1px solid #ddd;
 	padding: 10px;
 	line-height: normal;
@@ -1148,24 +1148,30 @@ table.txlist tr td.detail img {
 
 /* Receive panel*/
 
-
-.block .receive-panel__color-table .receive-panel__color__balance {
+.block .color-table .color-table__color-balance {
   width: 120px;
   margin: 0 10px;
   text-align: right;
 }
+.block .color-table__color-name-heading {
+  text-align: left;
+}
 
-.block .receive-panel__color-table .receive-panel__color__action {
+.block .color-table .color-table__color-action {
   text-align: center;
 }
-.receive-panel__color__action a {
+.color-table__color-action a {
   text-decoration: underline;
 }
 
-.receive-panel__clone-row {
-	display: none;
+.color-table__clone-row {
+  display: none;
 }
 
+.color-table thead td {
+  text-align: right;
+  font-weight: bold;
+}
 
 .ui-autocomplete {
     max-height: 200px;

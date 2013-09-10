@@ -73,7 +73,9 @@ define([
             return api;
         },
         setColors = function (colorDefsList) {
-            console.log("Set Colors", colorDefsList);
+            //console.log("Set Colors", colorDefsList);
+			//window.colors = colorDefsList; //TEMP TEMP 
+
             colorNames = [];
 			colorByName = {};
             $.each(colorDefsList, function (idx, el) {
@@ -90,7 +92,7 @@ define([
             });
         },
 		colorDefCallback = function (e, d) {
-                setColors(d);
+            setColors(d);
         },
         startGetColors = function () {
             var colorMan = application.getColorMan(),

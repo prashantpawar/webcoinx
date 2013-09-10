@@ -39,10 +39,10 @@ define([
                 sel.append('<option value="">BTC</option>');
                 var first = $.isEmptyObject(allowedColors);
                 first = true; // always reset
-                console.log('first=' + first);
-                console.log(d);
+                //console.log('first=' + first);
+                //console.log(d);
 
-                console.log(allowedColors);
+                //console.log(allowedColors);
 
                 function isgood(c) {
                     if (!first) {

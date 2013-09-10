@@ -85,11 +85,17 @@ define([
 			getWallet : function () {
 				return wallet;
 			},
+			getWalletManager: function () {
+				return wm;
+			},
 			getColorMan: function () {
 				return colorMan;
 			},
 			getColorDefServers: function () {
 				return colordefServers;
+			},
+			getExitNode: function () {
+				return exitNode;
 			}
 		};
 
