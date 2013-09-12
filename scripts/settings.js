@@ -1,8 +1,6 @@
 /*jslint */
-/*global define, localStorage, location */
-define([
-    "jquery"
-], function ($) {
+/*global define, localStorage, location, window */
+(function ($) {
     "use strict";
 
     var Settings = function () {
@@ -96,4 +94,8 @@ define([
             localStorage.settings = JSON.stringify(this.persistentSettings);
         }
     };
-});
+
+    window.Settings = Settings;
+
+}(jQuery));
+

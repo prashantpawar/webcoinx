@@ -82,6 +82,9 @@ define([
         var pgui = new P2pgui(wm, colorMan, exitNode, cfg);
 		
 		var app = {
+			getSettings: function () {
+				return cfg;
+			},
 			getWallet : function () {
 				return wallet;
 			},
@@ -98,6 +101,8 @@ define([
 				return exitNode;
 			}
 		};
+
+		window.app = app; //For interactive experiments
 
         colorSelector = ColorSelector.makeColorSelector(allowedColors);
 
