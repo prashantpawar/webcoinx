@@ -19,7 +19,7 @@ define(["jquery"], function($) {
         }
 
 
-        function ExchangeOffer(oid, A, B, auto_post) {
+        function ExchangeOffer(oid, A, B) {
             // A = offerer's side, B = replyer's side
             // ie. offerer says "I want to give you A['value'] coins of color 
             // A['colorid'] and receive B['value'] coins of color B['colorid']"
@@ -37,7 +37,8 @@ define(["jquery"], function($) {
             this.A = A;
             this.B = B;
             this.expires = null;
-            this.auto_post = auto_post;
+            this.auto_post = false;
+            this.is_mine = false;
         }
         ExchangeOffer.prototype.getData = function() {
             return {
@@ -77,5 +78,14 @@ define(["jquery"], function($) {
             if (!checkprop('value')) return false;
             return true;
         };
+
+        ExchangeOffer.MyOffer = function (oid, A, B, auto_post) {
+            ExchangeOffer.apply(this, arguments);
+            this.auto_post = auto_post;
+            this.is_mine = true;
+        };
+        ExchangeOffer.MyOffer.prototype = new ExchangeOffer();
+           
+
         return ExchangeOffer;
     });

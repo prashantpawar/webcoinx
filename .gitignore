@@ -1,2 +1,6 @@
 config/config.js
 *~
+
+# OS generated files #
+######################
+.DS_Store

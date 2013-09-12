@@ -63,7 +63,7 @@
               <p>
                 <label style="vertical-align: bottom">Your Balance:</label>
                 <span class="balance">
-                  <img src="images/ajax-loader.gif" id="updating-balance">
+                  <img src="images/ajax-loader.gif" class="updating-balance">
                   <span class="value">Connecting...</span>
                   <span class="unit"></span>
                 </span>
@@ -91,27 +91,30 @@
 
       <div id="panel-send">
         <div id="dialog_send_money" title="Send coins" class="block">
-          <form class="entry">
+          <form class="entry form-inline">
             <p>
-                <label for="color-selector-send">Color: </label>
+                <label>Amount:</label> 
+                <input id="dialog_send_money_amount" type="text" class="text tiny auto amount" />
                 <select id="color-selector-send" class="color-selector"><option value="">BTC</option></select>
-            </p>
-
-            <div class="messages"></div>
-            <p> 
-              <label>Amount:</label><br /> 
-              <input id="dialog_send_money_amount" type="text" class="text tiny auto amount" />
+                <br/>
+                <span class="balance font-small">
+                  (Available Balance:
+                  <img src="images/ajax-loader.gif" class="updating-balance">
+                  <span class="value">Connecting...</span>
+                  <span class="unit"></span>
+                  )
+                </span>
             </p>
             <p>
-              <label>Pay to:</label><br />
+              <label>Pay to:</label>
               <input type="text" class="text small address" /><br />
-              <span class="note" style="padding-left: 0">A Bitcoin Address, e.g. 1KPiGQYcMApEhJfcerftexfCDV7xKZt7fe</span>
-
+              <span class="note padding-left-0">A Bitcoin Address, e.g. 1KPiGQYcMApEhJfcerftexfCDV7xKZt7fe</span>
             </p>
             <p>
               <button class="send">Send</button>
               <button class="cancel">Cancel</button>
             </p>
+            <div class="messages"></div>
           </form>
           <div class="confirm">
             <p>You are about to send <span class="confirm_amount"></span> to the address <span class="confirm_address">1OIJIPSDJG0sdJG)SDJG0sadjgF</span>.</p>
@@ -144,7 +147,7 @@
             <p> 
               <label>Unit:</label><br /> 
               <input id="dialog_issue_unit" type="text" class="text tiny auto amount" /> (satoshi per unit)<br/>
-              <span class="note" style="padding-left: 0">You will need <i id='issue_cost'>amount X unit</i> BTC to issue</span>
+              <span class="note padding-left-0">You will need <i id='issue_cost'>amount X unit</i> BTC to issue</span>
             </p>
 
             <p>
@@ -161,25 +164,34 @@
           <div class="loading">
             <img src="images/walletsend.gif" alt="Sending coins...">
             <p>Issuing coins...</p>
-
           </div>
         </div>
       </div>
 
       <div id="panel-p2ptrade">
         <div id="p2ptrade" title="P2P Trade" class="block">
+          <div class="messages"></div>
           <p>
             <label for="color-selector-p2ptrade">Color: </label>
             <select id="color-selector-p2ptrade" class="color-selector"><option value="">BTC</option></select>
+            <br />
+            <span class="balance font-small">
+              (Available Balance:
+              <img src="images/ajax-loader.gif" class="updating-balance">
+              <span class="value">Connecting...</span>
+              <span class="unit"></span>
+              )
+            </span>
           </p>
           <div class="container">
             <div class="row">
-              <div class="span4">
+              <div class="span5">
                 <div class="well well-small">
                   <h4>Buy <span class="colorind"></span></h4>
                   <form class="form-inline">
                     <label class="control-label" for="quantity">Quantity (units)</label>
                     <input type="text" id="buyamt" class="span2" value="1" />
+                    <br/>
                     <label class="control-label" for="price">Price (BTC/unit)</label>
                     <input type="text" id="buyprice" class="span2" value="0.001" />
                     <p>Total BTC:</p>
@@ -188,12 +200,13 @@
                   </form>
                 </div>
               </div>
-              <div class="span4">
+              <div class="span5">
                 <div class="well well-small">
                   <h4>Sell <span class="colorind"></span></h4>
                   <form class="form-inline">
                     <label class="control-label" for="quantity">Quantity (units)</label>
                     <input type="text" id="sellamt" class="span2" value="1" />
+                    <br/>
                     <label class="control-label" for="price">Price (BTC/unit)</label>
                     <input type="text" id="sellprice" class="span2" value="0.001" />
                     <p>Total BTC:</p>
@@ -205,7 +218,7 @@
             </div>
             
             <div class="row">
-              <div class="span4">
+              <div class="span5">
                 <div class="well well-small">
                   <h4>My Bids:</h4>
                   <table class="table table-bordered table-hover table-condensed">
@@ -226,6 +239,7 @@
                       <tr>
                         <th>Quantity</th>
                         <th>Price</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody id="p2p_bids">
@@ -233,7 +247,7 @@
                   </table>
                 </div>
               </div>
-              <div class="span4">
+              <div class="span5">
                 <div class="well well-small">
                   <h4>My Asks:</h4>
                   
@@ -255,6 +269,7 @@
                       <tr>
                         <th>Quantity</th>
                         <th>Price</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody id="p2p_asks">
@@ -314,7 +329,7 @@
       <p>
         <label>Default Fee:</label><br> 
         <input id="dialog_settings_fee" type="text" class="text tiny auto amount" /><br>
-        <span class="note" style="padding-left: 0">You can change the fee per transaction in the Send Money dialog.</span>
+        <span class="note padding-left-0">You can change the fee per transaction in the Send Money dialog.</span>
       </p>
     </div>
 
@@ -322,8 +337,7 @@
       <p>
         <label>Exit Node</label><br />
         <input id="dialog_settings_exitNodeHost" type="text" class="text tiny exitnode" /><br />
-        <span class="note" style="padding-left: 0">The hostname for your Bitcoin exit node.</span>
-
+        <span class="note padding-left-0">The hostname for your Bitcoin exit node.</span>
       </p>
     </div>
 

@@ -5,8 +5,8 @@ define([
     "jquery"
 ], function ($) {
     "use strict";
-	var api,
-		initAddress = function () {
+    var api,
+    initAddress = function () {
             // Address copy-to-clipboard
             ZeroClipboard.setMoviePath('scripts/vendor/zeroclipboard/ZeroClipboard.swf');
             var addrClip = new ZeroClipboard.Client();
@@ -62,36 +62,36 @@ define([
 
 		},
 		showTestnetWalletInfo = function () {
-            $('#testnet_wallet').show();
+      $('#testnet_wallet').show();
 		},
 		hideTestnetWalletInfo = function () {
-            $('#testnet_wallet').hide();
+      $('#testnet_wallet').hide();
 		},
-        setWalletInitInfo = function (text) {
-            $("#wallet_init_status").text(text);
-        },
-        setWalletActiveState = function () {
-            $("#wallet_init_status").text("");
-            $('#wallet_active').show();
-            $('#wallet_init').hide();
-        },
-        setWalletInitState = function () {
-            $("#wallet_init_status").text("");
-            $('#wallet_active').hide();
-            $('#wallet_init').show();
-        },
+    setWalletInitInfo = function (text) {
+      $("#wallet_init_status").text(text);
+    },
+    setWalletActiveState = function () {
+      $("#wallet_init_status").text("");
+      $('#wallet_active').show();
+      $('#wallet_init').hide();
+    },
+    setWalletInitState = function () {
+      $("#wallet_init_status").text("");
+      $('#wallet_active').hide();
+      $('#wallet_init').show();
+    },
 		setBalance = function (value, unit) {
-            $('#wallet_active .balance .value').text(value);
-            $('#wallet_active .balance .unit').text(unit);
+      $('.balance .value').text(value);
+      $('.balance .unit').text(unit);
 		},
 		setAddress = function (text) {
 			$('#addr').val(text);
 		},
 		showUpdatingBalance = function () {
-			$("#updating-balance").show();
+			$(".updating-balance").show();
 		},
 		hideUpdatingBalance = function () {
-			$("#updating-balance").hide();
+			$(".updating-balance").hide();
 		};
 
 	api = {

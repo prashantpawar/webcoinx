@@ -52,6 +52,9 @@ a:hover {
 	padding-top: 20px;
 }
 
+.padding-left-0 {
+  padding-left: 0;
+}
 
 /* Header */
 
@@ -606,6 +609,7 @@ a:hover {
 }
 
 .block .message p {
+  margin: 0;
 	padding: 0;
 	width: 93%;
 	float: left;
@@ -834,6 +838,11 @@ a:hover {
 	vertical-align: middle;
 }
 
+.block form select {
+  margin-bottom: 0;
+	vertical-align: top;
+}
+
 .block form input.submit.tiny {
 	width: 105px;
 	height: 20px;
@@ -1056,14 +1065,14 @@ a:hover {
 	text-align: right;
 }
 
-#wallet_active .balance {
+.balance {
 	display: inline-block;
-	font-size: 15px;
+	font-size: 11px;
 	vertical-align: bottom;
 	color: #555;
 }
 
-#wallet_active .balance .value {
+.balance .value {
 	font-weight: bold;
 }
 
