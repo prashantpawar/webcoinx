@@ -15,6 +15,7 @@ define([
     "desktop/color-selector",
     "desktop/issue-panel",
     "desktop/overview-panel",
+    "desktop/receive-panel",
     "desktop/send-panel",
 	"desktop/testnet-handler",
     "desktop/transaction-panel",
@@ -31,6 +32,7 @@ define([
              ColorSelector,
              IssuePanel,
 			 OverviewPanel,
+			 ReceivePanel,
              SendPanel,
 			 TestnetHandler,
              TransactionPanel,
@@ -80,10 +82,27 @@ define([
         var pgui = new P2pgui(wm, colorMan, exitNode, cfg);
 		
 		var app = {
+			getSettings: function () {
+				return cfg;
+			},
 			getWallet : function () {
 				return wallet;
+			},
+			getWalletManager: function () {
+				return wm;
+			},
+			getColorMan: function () {
+				return colorMan;
+			},
+			getColorDefServers: function () {
+				return colordefServers;
+			},
+			getExitNode: function () {
+				return exitNode;
 			}
-		}
+		};
+
+		window.app = app; //For interactive experiments
 
         colorSelector = ColorSelector.makeColorSelector(allowedColors);
 
@@ -209,6 +228,10 @@ define([
                                             exitNode, colorSelector);
 
         transactionPanel = TransactionPanel.makeTransactionPanel();
+
+		var receivePanel = ReceivePanel.makeReceivePanel(app);
+		receivePanel.render();
+		MainPage.attachPanel(receivePanel.$el);
 
         settingsDialog = SettingsDialog.makeSettingsDialog(allowedColors,
 							   colordefServers,

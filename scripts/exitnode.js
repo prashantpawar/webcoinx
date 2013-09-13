@@ -12,8 +12,9 @@ define(function () {
   };
 
   ExitNode.prototype.setSocket = function (host, port, secure) {
-    if (host.indexOf(':') < 0)
+    if (host.indexOf(':') < 0) {
       host = host + ":" + port;
+	}
     this.uri = (secure ? "https://" : "http://")+host;
   };
 
@@ -53,7 +54,9 @@ define(function () {
 		  "params": [argObj],
 		  "id": this.unique
 	  }));
-	  if (callback) this.callbacks[this.unique] = callback;
+	  if (callback) {
+		this.callbacks[this.unique] = callback;
+	  }
 	  this.unique++;
   };
 
@@ -106,12 +109,13 @@ define(function () {
 	  // Handle JSON-RPC result messages
 	  if ("undefined" !== typeof data.result &&
 		    "function" == typeof this.callbacks[data.id]) {
-		try {
-		  this.callbacks[data.id](data.error, data.result);
-		} catch (e) {
-			console.log("Handler crashed:");
-			console.log(e.stack);
-		}
+
+		//try {
+		this.callbacks[data.id](data.error, data.result);
+		//} catch (e) {
+		//	console.log("Handler crashed:");
+		//	console.log(e.stack);
+		//}
 
 	    // Handle JSON-RPC request messages
 	  } else if ("undefined" !== typeof data.method) {

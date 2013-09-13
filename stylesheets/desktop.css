@@ -473,8 +473,8 @@ a:hover {
 	background: #fbfbfb;
 }
 	
-.block table tr td,
-.block table tr th {
+.block table td,
+.block table th {
 	border-bottom: 1px solid #ddd;
 	padding: 10px;
 	line-height: normal;
@@ -1153,4 +1153,61 @@ table.txlist tr td.detail img {
 
 #dialog_settings form p {
 	clear: none;
+}
+
+/* Receive panel*/
+
+.block .color-table .color-table__color-balance {
+  width: 120px;
+  margin: 0 10px;
+  text-align: right;
+}
+.block .color-table__color-name-heading {
+  text-align: left;
+}
+
+.block .color-table .color-table__color-action {
+  text-align: center;
+}
+
+.color-table__color-action a {
+  text-decoration: underline;
+}
+
+.block .color-table__color-address-field {
+  margin: 0;
+  width: 80px;
+}
+
+.color-table__clone-row {
+  display: none;
+}
+
+.color-table thead td {
+  text-align: right;
+  font-weight: bold;
+}
+
+.ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+}
+  /* IE 6 doesn't support max-height
+   * we use height instead, but this forces the menu to always be this tall
+   */
+* html .ui-autocomplete {
+    height: 200px;
+}
+
+.add-color-dialog__show-all-button {
+	height: 1.5em;
+	width: 1.5em;
+}
+
+.add-color-dialog__add-button {
+	position: absolute;
+	bottom: 1.5em;
+	right: 1.5em;
 }
