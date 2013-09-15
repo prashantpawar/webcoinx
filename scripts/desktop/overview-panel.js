@@ -6,7 +6,7 @@ define([
 ], function ($) {
     "use strict";
     var api,
-    initAddress = function () {
+        initAddress = function () {
             // Address copy-to-clipboard
             ZeroClipboard.setMoviePath('scripts/vendor/zeroclipboard/ZeroClipboard.swf');
             var addrClip = new ZeroClipboard.Client();
@@ -47,79 +47,75 @@ define([
             //     addrClipButton.removeClass('ui-state-focus');
             //  });
         },
-		exposeClickEvent = function (domSelector, eventName) {
-			$(domSelector).click(function (e) {
-				e.preventDefault();
-				$(api).trigger(eventName, e);
-			});
-		},
-	    init = function () {
-			initAddress();
-			exposeClickEvent('#wallet_active .new_addr',
-							 api.events.NEW_ADDRESS_CLICK);
-			exposeClickEvent('#wallet_active_recreate',
-							 api.events.NEW_WALLET_CLICK);
+        exposeClickEvent = function (domSelector, eventName) {
+            $(domSelector).click(function (e) {
+                e.preventDefault();
+                $(api).trigger(eventName, e);
+            });
+        },
+        init = function () {
+            initAddress();
+            exposeClickEvent('#wallet_active .new_addr', api.events.NEW_ADDRESS_CLICK);
+            exposeClickEvent('#wallet_active_recreate', api.events.NEW_WALLET_CLICK);
+        },
+        showTestnetWalletInfo = function () {
+            $('#testnet_wallet').show();
+        },
+        hideTestnetWalletInfo = function () {
+            $('#testnet_wallet').hide();
+        },
+        setWalletInitInfo = function (text) {
+            $("#wallet_init_status").text(text);
+        },
+        setWalletActiveState = function () {
+            $("#wallet_init_status").text("");
+            $('#wallet_active').show();
+            $('#wallet_init').hide();
+        },
+        setWalletInitState = function () {
+            $("#wallet_init_status").text("");
+            $('#wallet_active').hide();
+            $('#wallet_init').show();
+        },
+        setBalance = function (value, unit) {
+            $('.balance .value').text(value);
+            $('.balance .unit').text(unit);
+        },
+        setBTCBalance = function (value, unit) {
+            $('.balance-btc .value').text(value);
+            $('.balance-btc .unit').text(unit);
+        },
+        setAddress = function (text) {
+            $('#addr').val(text);
+        },
+        showUpdatingBalance = function () {
+            $(".updating-balance").show();
+        },
+        hideUpdatingBalance = function () {
+            $(".updating-balance").hide();
+        };
 
-		},
-		showTestnetWalletInfo = function () {
-      $('#testnet_wallet').show();
-		},
-		hideTestnetWalletInfo = function () {
-      $('#testnet_wallet').hide();
-		},
-    setWalletInitInfo = function (text) {
-      $("#wallet_init_status").text(text);
-    },
-    setWalletActiveState = function () {
-      $("#wallet_init_status").text("");
-      $('#wallet_active').show();
-      $('#wallet_init').hide();
-    },
-    setWalletInitState = function () {
-      $("#wallet_init_status").text("");
-      $('#wallet_active').hide();
-      $('#wallet_init').show();
-    },
-	setBalance = function (value, unit) {
-        $('.balance .value').text(value);
-        $('.balance .unit').text(unit);
-	},
-	setBTCBalance = function (value, unit) {
-		$('.balance-btc .value').text(value);
-		$('.balance-btc .unit').text(unit);
-	},
-	setAddress = function (text) {
-		$('#addr').val(text);
-	},
-	showUpdatingBalance = function () {
-		$(".updating-balance").show();
-	},
-	hideUpdatingBalance = function () {
-		$(".updating-balance").hide();
-	};
-
-	api = {
-		events: {
-			NEW_ADDRESS_CLICK: "new-address-click",
-			NEW_WALLET_CLICK: "new-wallet-click"
-		},
-		showTestnetWalletInfo: showTestnetWalletInfo,
-		hideTestnetWalletInfo: hideTestnetWalletInfo,
-		setWalletInitInfo: setWalletInitInfo,
-		setWalletInitState: setWalletInitState,
-		setWalletActiveState: setWalletActiveState,
-		setBalance: setBalance,
+    api = {
+        events: {
+            NEW_ADDRESS_CLICK: "new-address-click",
+            NEW_WALLET_CLICK: "new-wallet-click"
+        },
+        showTestnetWalletInfo: showTestnetWalletInfo,
+        hideTestnetWalletInfo: hideTestnetWalletInfo,
+        setWalletInitInfo: setWalletInitInfo,
+        setWalletInitState: setWalletInitState,
+        setWalletActiveState: setWalletActiveState,
+        setBalance: setBalance,
         setBTCBalance: setBTCBalance,
-		setAddress: setAddress,
-		showUpdatingBalance: showUpdatingBalance,
-		hideUpdatingBalance: hideUpdatingBalance
-	};
+        setAddress: setAddress,
+        showUpdatingBalance: showUpdatingBalance,
+        hideUpdatingBalance: hideUpdatingBalance
+    };
 
-	return {
-		makeOverviewPanel: function () {
-			init();
-			return api;
-		}
-	};
-
+    return {
+        makeOverviewPanel: function () {
+            init();
+            return api;
+        }
+    };
 });
