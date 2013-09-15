@@ -52,6 +52,10 @@ a:hover {
 	padding-top: 20px;
 }
 
+.margin-left-0 {
+  margin-left: 0;
+}
+
 .padding-left-0 {
   padding-left: 0;
 }
@@ -665,13 +669,19 @@ a:hover {
 }
 
 .block label,
-.block form label {
+.block form label,
+.block form .label-width {
 	font-family: "Lucida Grande", Verdana, sans-serif;
 	font-size: 12px;
 	font-weight: bold;
 	color: #555;
 	margin-right: 10px;
 	vertical-align: middle;
+}
+
+.block form .label-width {
+  float: left;
+  width: 80px;
 }
 
 .block form input.text {
@@ -721,7 +731,6 @@ a:hover {
 .block form input.checkbox {
 	vertical-align: middle;
 }
-
 
 /* Custom form select element */
 
@@ -1065,14 +1074,16 @@ a:hover {
 	text-align: right;
 }
 
-.balance {
+.balance,
+.balance-btc {
 	display: inline-block;
 	font-size: 11px;
 	vertical-align: bottom;
 	color: #555;
 }
 
-.balance .value {
+.balance .value,
+.balance-btc .value {
 	font-weight: bold;
 }
 

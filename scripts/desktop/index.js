@@ -81,6 +81,10 @@ define([
         txView = new TransactionView($('#main_tx_list'), colorMan);
         var pgui = new P2pgui(wm, colorMan, exitNode, cfg);
 		
+		var btcBalance;
+    	var BTC_COLOR = "";
+    	var BTC_UNIT = "BTC";
+
 		var app = {
 			getSettings: function () {
 				return cfg;
@@ -137,6 +141,9 @@ define([
                 overviewPanel.hideUpdatingBalance();
             }
             var v = Bitcoin.Util.formatValue(colorMan.s2c(color, wallet.getBalance(color)));
+
+            btcBalance = Bitcoin.Util.formatValue(colorMan.s2c(BTC_COLOR, wallet.getBalance(BTC_COLOR)));
+
             if (color) {
                 // btc2color prevents rounding errors
                 v = colorMan.btc2color(v, color);
@@ -144,13 +151,14 @@ define([
                 //                      autoNumericColor.vMax = ''+v;
                 console.log(autoNumericColor);
             }
-			overviewPanel.setBalance(v, colorSelector.getColorName());
+
+            overviewPanel.setBalance(v, colorSelector.getColorName());
+            overviewPanel.setBTCBalance(btcBalance, BTC_UNIT);
 
             $('.colorind').text(colorSelector.getColorName());
 
             var addr = wallet.getCurAddress().toString();
-			overviewPanel.setAddress(
-				mangle_addr(wallet.getCurAddress().toString()));
+            overviewPanel.setAddress(mangle_addr(wallet.getCurAddress().toString()));
         }
 
         // UGLY UGLY UGLY UGLY
@@ -166,7 +174,7 @@ define([
 
         $(exitNode).bind('connectStatus', function (e) {
             console.log('connect', e);
-			MainPage.setConnectionStatus(e.status);
+            MainPage.setConnectionStatus(e.status);
         });
 
         $(exitNode).bind('txData txAdd txNotify', function (e) {
@@ -178,14 +186,14 @@ define([
         });
 
         $(wm).bind('walletInit', function (e) {
-			overviewPanel.setWalletActiveState();
+            overviewPanel.setWalletActiveState();
             wallet = e.newWallet.wallet;
             var addr = e.newWallet.wallet.getCurAddress().toString();
-			overviewPanel.setAddress(addr);
+            overviewPanel.setAddress(addr);
         });
 
         $(wm).bind('walletDeinit', function (e) {
-			overviewPanel.setWalletInitState();
+            overviewPanel.setWalletInitState();
         });
 
         // Load wallet if there is one

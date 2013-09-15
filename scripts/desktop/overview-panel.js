@@ -80,19 +80,23 @@ define([
       $('#wallet_active').hide();
       $('#wallet_init').show();
     },
-		setBalance = function (value, unit) {
-      $('.balance .value').text(value);
-      $('.balance .unit').text(unit);
-		},
-		setAddress = function (text) {
-			$('#addr').val(text);
-		},
-		showUpdatingBalance = function () {
-			$(".updating-balance").show();
-		},
-		hideUpdatingBalance = function () {
-			$(".updating-balance").hide();
-		};
+	setBalance = function (value, unit) {
+        $('.balance .value').text(value);
+        $('.balance .unit').text(unit);
+	},
+	setBTCBalance = function (value, unit) {
+		$('.balance-btc .value').text(value);
+		$('.balance-btc .unit').text(unit);
+	},
+	setAddress = function (text) {
+		$('#addr').val(text);
+	},
+	showUpdatingBalance = function () {
+		$(".updating-balance").show();
+	},
+	hideUpdatingBalance = function () {
+		$(".updating-balance").hide();
+	};
 
 	api = {
 		events: {
@@ -105,6 +109,7 @@ define([
 		setWalletInitState: setWalletInitState,
 		setWalletActiveState: setWalletActiveState,
 		setBalance: setBalance,
+        setBTCBalance: setBTCBalance,
 		setAddress: setAddress,
 		showUpdatingBalance: showUpdatingBalance,
 		hideUpdatingBalance: hideUpdatingBalance
