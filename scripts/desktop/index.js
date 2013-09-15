@@ -1,5 +1,5 @@
-/*jslint vars: true */
-/*global setTimeout, alert, prompt, document, location */
+/*jslint vars: true, browser: true */
+/*global setTimeout, alert, prompt, document, location, console */
 /*global define, EJS, ZeroClipboard */
 /*global Bitcoin, BigInteger, Crypto, Settings, Message, TransactionDatabase, Option */
 
@@ -17,7 +17,7 @@ define([
     "desktop/overview-panel",
     "desktop/receive-panel",
     "desktop/send-panel",
-	"desktop/testnet-handler",
+    "desktop/testnet-handler",
     "desktop/transaction-panel",
     "desktop/settings-dialog",
     "desktop/main-page",
@@ -31,13 +31,13 @@ define([
              P2pgui,
              ColorSelector,
              IssuePanel,
-			 OverviewPanel,
-			 ReceivePanel,
+             OverviewPanel,
+             ReceivePanel,
              SendPanel,
-			 TestnetHandler,
+             TestnetHandler,
              TransactionPanel,
-			 SettingsDialog,
-			 MainPage,
+             SettingsDialog,
+             MainPage,
              MiniWallet) {
     'use strict';
     var colorSelector,
@@ -58,7 +58,7 @@ define([
 
         var autoNumericColor = {
             vMin: '0',
-            mDec: null,
+            mDec: null
         };
 
         var cfg = new Settings();
@@ -80,33 +80,33 @@ define([
 
         txView = new TransactionView($('#main_tx_list'), colorMan);
         var pgui = new P2pgui(wm, colorMan, exitNode, cfg);
-		
-		var btcBalance;
-    	var BTC_COLOR = "";
-    	var BTC_UNIT = "BTC";
 
-		var app = {
-			getSettings: function () {
-				return cfg;
-			},
-			getWallet : function () {
-				return wallet;
-			},
-			getWalletManager: function () {
-				return wm;
-			},
-			getColorMan: function () {
-				return colorMan;
-			},
-			getColorDefServers: function () {
-				return colordefServers;
-			},
-			getExitNode: function () {
-				return exitNode;
-			}
-		};
+        var btcBalance;
+        var BTC_COLOR = "";
+        var BTC_UNIT = "BTC";
 
-		window.app = app; //For interactive experiments
+        var app = {
+            getSettings: function () {
+                return cfg;
+            },
+            getWallet : function () {
+                return wallet;
+            },
+            getWalletManager: function () {
+                return wm;
+            },
+            getColorMan: function () {
+                return colorMan;
+            },
+            getColorDefServers: function () {
+                return colordefServers;
+            },
+            getExitNode: function () {
+                return exitNode;
+            }
+        };
+
+        window.app = app; //For interactive experiments
 
         colorSelector = ColorSelector.makeColorSelector(allowedColors);
 
@@ -122,9 +122,9 @@ define([
             }, 300);
         }
 
-		TestnetHandler.initialize(cfg, app, overviewPanel);
+        TestnetHandler.initialize(cfg, app, overviewPanel);
 
-		MainPage.setConnectionInfo(exitNodeHost);
+        MainPage.setConnectionInfo(exitNodeHost);
 
         function mangle_addr(addr) {
             var color = colorSelector.getColor(); // '' = BTC
@@ -200,7 +200,7 @@ define([
         wm.init();
 
         // Interface buttons
-		$(overviewPanel).bind(overviewPanel.events.NEW_WALLET_CLICK, function (e) {
+        $(overviewPanel).bind(overviewPanel.events.NEW_WALLET_CLICK, function (e) {
             if (prompt("WARNING: This action will make the application forget your current wallet. Unless you have the wallet backed up, this is final and means your balance will be lost forever!\n\nIF YOU ARE SURE, TYPE \"YES\".") === "YES") {
                 wm.createWallet({
                     'type': 'mini',
@@ -209,7 +209,7 @@ define([
             }
         });
 
-		$(overviewPanel).bind(overviewPanel.events.NEW_ADDRESS_CLICK, function (e) {
+        $(overviewPanel).bind(overviewPanel.events.NEW_ADDRESS_CLICK, function (e) {
             var addr = mangle_addr(wallet.getNextAddress().toString());
             overviewPanel.setAddress(addr);
             wm.save();
@@ -237,19 +237,19 @@ define([
 
         transactionPanel = TransactionPanel.makeTransactionPanel();
 
-		var receivePanel = ReceivePanel.makeReceivePanel(app);
-		receivePanel.render();
-		MainPage.attachPanel(receivePanel.$el);
+        var receivePanel = ReceivePanel.makeReceivePanel(app);
+        receivePanel.render();
+        MainPage.attachPanel(receivePanel.$el);
 
         settingsDialog = SettingsDialog.makeSettingsDialog(allowedColors,
-							   colordefServers,
-							   cfg,
-							   autoNumericBtc,
-							   reload_colors);
+                               colordefServers,
+                               cfg,
+                               autoNumericBtc,
+                               reload_colors);
 
-		$(MainPage).bind(MainPage.events.SETTINGS_CLICK, function () {
+        $(MainPage).bind(MainPage.events.SETTINGS_CLICK, function () {
             settingsDialog.openDialog();
-			return false;
+            return false;
         });
 
     });
