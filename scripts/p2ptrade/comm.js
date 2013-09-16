@@ -48,9 +48,8 @@ define(["jquery"], function($) {
             var data;
             var self = this;
             if (this.lastpoll == -1)
-                data = {
-                    from_timestamp: (now() - this.STANDARD_OFFER_EXPIRY_INTERVAL).toString()
-            };
+                data = {from_timestamp_rel: this.STANDARD_OFFER_EXPIRY_INTERVAL.toString()    };
+            // note: not implemented on server now, last 25 entries are returned, which is OK
             else
                 data = {
                     from_serial: (this.lastpoll + 1).toString()
