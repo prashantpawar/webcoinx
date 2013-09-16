@@ -24,6 +24,7 @@ define(
             }
             refresh();
             window.setInterval(refresh, 1000);
+            $('#p2p_status').hide();
 
             $('#buy-button').click(function (event) {
                 event.preventDefault();
@@ -37,6 +38,11 @@ define(
                 self.create_offer(self.colorid, self.unit, $('#sellamt').val(),
                                   false, "1", $('#sellprice').val(), "1"
                                   );
+            });
+            
+            $('#p2p_status .close').click(function () {
+                $(this).parent().removeClass('in');
+                $('#p2p_status').hide(250);
             });
         }
 
@@ -67,9 +73,20 @@ define(
                 text = "";
 
             if (active) {
+                var we_buy;
+                var active_offer_info =  this.decodeOfferInfo(this.epa.active_ep.offer, true);
+                if (this.epa.active_ep.state == 'proposed') 
+                   we_buy = !active_offer_info.is_bid;
+                else
+                   we_buy = active_offer_info.is_bid;
+                  
                 text = "Transaction in progress: " + this.epa.active_ep.state;
+                text += ", web_buy: " + we_buy;
+                
+                $('#p2p_status').show(250);
+                $('#p2p_status').addClass('in');
             }
-            $("#p2p_status").text(text);
+            $("#p2p_status .status").text(text);
 
             self.checkBTCTrade();
 
@@ -162,7 +179,6 @@ define(
                 $('#buy-button').attr('disabled', true);
                 $('#sell-button').attr('disabled', true);
 
-                
                 if(msgHub[0].innerHTML.length == 0) {
                     var msg = "Please select an asset you want to trade";
                     var msgObj = Message.create(msg, "error");
@@ -175,7 +191,6 @@ define(
                 msgHub.empty();
             }
         };
-        
 
         P2pgui.prototype.decodeOfferInfo = function (offer, fmt) {
             var is_ask = (offer.A.colorid === this.colorid && offer.B.colorid === false);

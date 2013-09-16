@@ -101,8 +101,7 @@
                   (Available Balance:
                   <img src="images/ajax-loader.gif" class="updating-balance">
                   <span class="value">Connecting...</span>
-                  <span class="unit"></span>
-                  )
+                  <span class="unit"></span>)
                 </span>
             </p>
             <p>
@@ -171,6 +170,10 @@
       <div id="panel-p2ptrade">
         <div id="p2ptrade" title="P2P Trade" class="block">
           <div class="messages"></div>
+          <div id="p2p_status" class="alert alert-success alert-block fade">
+            <button href="#" type="button" class="close">&times;</button>
+            <span class="status"></span>
+          </div>
           <p>
             <label for="color-selector-p2ptrade">Color: </label>
             <select id="color-selector-p2ptrade" class="color-selector"><option value="">BTC</option></select>
@@ -179,8 +182,7 @@
               (Available Balance:
               <img src="images/ajax-loader.gif" class="updating-balance">
               <span class="value">Connecting...</span>
-              <span class="unit"></span>
-              )
+              <span class="unit"></span>)
             </span>
           </p>
           <div class="container">
@@ -194,7 +196,14 @@
                     <br/>
                     <label class="control-label" for="price">Price (BTC/unit)</label>
                     <input type="text" id="buyprice" class="span2" value="0.001" />
-                    <p>Total BTC:</p>
+                    <p>
+                      <span class="label-width margin-left-0">Total</span>
+                      <span class="balance-btc span2">
+                        <img src="images/ajax-loader.gif" class="updating-balance">
+                        <span class="value">Connecting...</span>
+                        <span class="unit"></span>
+                      </span>
+                    </p>
                     
                     <button id="buy-button" class="btn btn-primary btn-block">Buy</button>
                   </form>
@@ -209,7 +218,14 @@
                     <br/>
                     <label class="control-label" for="price">Price (BTC/unit)</label>
                     <input type="text" id="sellprice" class="span2" value="0.001" />
-                    <p>Total BTC:</p>
+                    <p>
+                      <span class="label-width margin-left-0">Total</span>
+                      <span class="balance span2">
+                        <img src="images/ajax-loader.gif" class="updating-balance">
+                        <span class="value">Connecting...</span>
+                        <span class="unit"></span>
+                      </span>
+                    </p>
                     
                     <button id="sell-button" class="btn btn-primary btn-block">Sell</button>
                   </form>
