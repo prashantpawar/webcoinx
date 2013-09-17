@@ -2,7 +2,7 @@
 /*global define*/
 define(["jquery"], function ($) {
     var exitNode = null;
-    var colorspace = null;
+    var colorspace = [];
     var cinit = {
 		false: {
 			name: "BTC",
@@ -242,7 +242,7 @@ define(["jquery"], function ($) {
         var doit;
         var prev = null;
         var clist = [];
-        colorspace = null;
+        colorspace = [];
         colormap = $.extend({}, cinit);
   
 		function fixurl(url) {

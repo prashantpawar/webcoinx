@@ -82,8 +82,17 @@ define([
         },
         saveCurrentColors = function () {
             var colorObj = getShownColors(true),
+                allowedColors = application.getAllowedColors(),
                 cfg = application.getSettings();
             cfg.apply({allowedColors: colorObj});
+            $.each(colorObj, function (color, enabled) {
+                       if (enabled === true) {
+                           allowedColors[color] = true;
+                       } else {
+                           allowedColors[color] = false;
+                       }
+                   });            
+            application.reloadColors();
         },
         refreshColors = function () {
             $dom.find('.color-table__color').each(function () {
@@ -138,14 +147,14 @@ define([
         renderColors = function () {
             // Similar to the add-color-dialog and quite awkward...
             var cfg = application.getSettings(),
+                storedColors = application.getAllowedColors(),
                 colorMan = application.getColorMan(),
-                storedColors = cfg.get('allowedColors'),
 
                 setColors = function (colorDefsList) {
                     var shownColors = getShownColors();
                     //console.log("Set Colors", colorDefsList);
                     $.each(colorDefsList, function (idx, el) {
-                        if (storedColors[el.colorid]) {
+                        if (storedColors[el.colorid] === true) {
                             if (!shownColors[el.colorid]) {
                                  addColorRow(el);
                             }

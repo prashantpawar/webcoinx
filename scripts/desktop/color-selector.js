@@ -37,20 +37,8 @@ define([
                 var sel = $('.color-selector');
                 sel.empty();
                 sel.append('<option value="">BTC</option>');
-                var first = $.isEmptyObject(allowedColors);
 
-                //first = true; // always reset
-
-                function isgood(c) {
-                    if (!first) {
-                        if (allowedColors[c] !== true) {
-                            return false;
-                        }
-                    } else {
-                        allowedColors[c] = true;
-                    }
-                    return true;
-                }
+                function isgood(c) { return (allowedColors[c] === true); }
 
                 var cms = $('#color_multiselect');
                 cms.empty();

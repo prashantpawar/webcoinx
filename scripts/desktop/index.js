@@ -103,7 +103,11 @@ define([
             },
             getExitNode: function () {
                 return exitNode;
-            }
+            },
+            getAllowedColors: function () {
+                return allowedColors;
+            },
+            reloadColors: function () {} // implemented below
         };
 
         window.app = app; //For interactive experiments
@@ -169,6 +173,7 @@ define([
                 });
             });
         }
+        app.reloadColors = reload_colors;
 
         setCommonBindings(cfg, wm, txDb, txMem, txView, exitNode, colorMan);
 
