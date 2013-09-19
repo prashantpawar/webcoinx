@@ -1224,3 +1224,7 @@ table.txlist tr td.detail img {
 	bottom: 1.5em;
 	right: 1.5em;
 }
+
+.p2ptrade-form .control-label {
+	padding-top: 5px;
+}
