@@ -187,67 +187,64 @@
           </p>
           <div class="container">
             <div class="row">
-              <div class="span5">
+              <div class="span4">
                 <div class="well well-small">
                   <h4>Buy <span class="colorind"></span></h4>
                   <form class="form-inline">
-                    <label class="control-label" for="quantity">Quantity (units)</label>
-                    <input type="text" id="buyamt" class="span2" value="1" />
+                    <label class="control-label span1" for="quantity">Quantity</label>
+                    <input type="text" id="buyamt" class="span2" value="" />
                     <br/>
-                    <label class="control-label" for="price">Price (BTC/unit)</label>
-                    <input type="text" id="buyprice" class="span2" value="0.001" />
+                    <label class="control-label span1" for="price">Price each</label>
+                    <input type="text" id="buyprice" class="span2" value="" />
+                    BTC
+                    <br/>
                     <p>
-                      <span class="label-width margin-left-0">Total</span>
-                      <span class="balance-btc span2">
-                        <img src="images/ajax-loader.gif" class="updating-balance">
-                        <span class="value">Connecting...</span>
-                        <span class="unit"></span>
+                      <label class="control-label span1">Cost</label>
+                      <span id="buycost">...</span>
+                      <br/>
+                      <span class="balance font-small">
+                        <span class="balance-btc span4">
+                          (Available balance: 
+                          <img src="images/ajax-loader.gif" class="updating-balance">
+                          <span class="value">Connecting...</span>
+                          <span class="unit"></span>)
+                        </span>
                       </span>
                     </p>
-                    
-                    <button id="buy-button" class="btn btn-primary btn-block">Buy</button>
+                    <button id="buy-button" class="btn btn-primary btn-block btn-large">Buy</button>
                   </form>
                 </div>
               </div>
-              <div class="span5">
+              <div class="span4">
                 <div class="well well-small">
                   <h4>Sell <span class="colorind"></span></h4>
                   <form class="form-inline">
-                    <label class="control-label" for="quantity">Quantity (units)</label>
-                    <input type="text" id="sellamt" class="span2" value="1" />
-                    <br/>
-                    <label class="control-label" for="price">Price (BTC/unit)</label>
-                    <input type="text" id="sellprice" class="span2" value="0.001" />
+                    <label class="control-label span1" for="quantity">Quantity</label>
+                    <input type="text" id="sellamt" class="span2" value="" />
+                    <br />
+                    <span class="balance span4">
+                      (Available balance:
+                      <img src="images/ajax-loader.gif" class="updating-balance">
+                      <span class="value">Connecting...</span>
+                      <span class="unit"></span>)
+                    </span>
+                    <label class="control-label span1" for="price">Price each</label>
+                    <input type="text" id="sellprice" class="span2" value="" />
+                    BTC
+                    <br />
                     <p>
-                      <span class="label-width margin-left-0">Total</span>
-                      <span class="balance span2">
-                        <img src="images/ajax-loader.gif" class="updating-balance">
-                        <span class="value">Connecting...</span>
-                        <span class="unit"></span>
-                      </span>
-                    </p>
-                    
-                    <button id="sell-button" class="btn btn-primary btn-block">Sell</button>
+                      <label class="control-label span1">Proceeds</label>
+                      <span id="sellproc">...</span>
+                      </p>
+                    <button id="sell-button" class="btn btn-primary btn-block btn-large">Sell</button>
                   </form>
                 </div>
               </div>
             </div>
             
             <div class="row">
-              <div class="span5">
+              <div class="span4">
                 <div class="well well-small">
-                  <h4>My Bids:</h4>
-                  <table class="table table-bordered table-hover table-condensed">
-                    <thead>
-                      <tr>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                      </tr>
-                    </thead>
-                    <tbody id="my_p2p_bids">
-                    </tbody>
-                  </table>        
-                  
                   <h4>Bids:</h4>
                   
                   <table class="table table-bordered table-hover table-condensed">
@@ -263,21 +260,8 @@
                   </table>
                 </div>
               </div>
-              <div class="span5">
+              <div class="span4">
                 <div class="well well-small">
-                  <h4>My Asks:</h4>
-                  
-                  <table class="table table-bordered table-hover table-condensed">
-                    <thead>
-                      <tr>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                      </tr>
-                    </thead>
-                    <tbody id="my_p2p_asks">
-                    </tbody>
-                  </table>
-                  
                   <h4>Asks:</h4>
                   
                   <table class="table table-bordered table-hover table-condensed">

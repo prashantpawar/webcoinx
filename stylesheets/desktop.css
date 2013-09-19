@@ -1080,7 +1080,9 @@ a:hover {
 	font-size: 11px;
 	vertical-align: bottom;
 	color: #555;
+        margin-bottom: 5px;
 }
+
 
 .balance .value,
 .balance-btc .value {
