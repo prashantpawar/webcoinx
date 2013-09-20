@@ -174,17 +174,30 @@
             <button href="#" type="button" class="close">&times;</button>
             <span class="status"></span>
           </div>
-          <p>
-            <label for="color-selector-p2ptrade">Color: </label>
-            <select id="color-selector-p2ptrade" class="color-selector"><option value="">BTC</option></select>
-            <br />
-            <span class="balance font-small">
-              (Available Balance:
-              <img src="images/ajax-loader.gif" class="updating-balance">
-              <span class="value">Connecting...</span>
-              <span class="unit"></span>)
-            </span>
-          </p>
+          <div class="container">
+            <div class="row">
+              <div class="span3">
+                <div class="well well-small">
+                  <label for="color-selector-p2ptrade">Asset: </label>
+                  <select id="color-selector-p2ptrade" class="color-selector"><option value="">BTC</option></select>
+                  <br />
+                  <span class="balance font-small">
+                    (Available Balance:
+                    <img src="images/ajax-loader.gif" class="updating-balance">
+                    <span class="value">Connecting...</span>
+                    <span class="unit"></span>)
+                  </span>
+                </div>
+              </div>
+              <div class="span9">
+                <div class="well well-small">
+                  Server: foobar <br/>
+                  Status: connected <br />
+                  Notifications go here
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="container">
             <div class="row">
               <div class="span4">
@@ -239,6 +252,11 @@
                       </p>
                     <button id="sell-button" class="btn btn-primary btn-block btn-large">Sell</button>
                   </form>
+                </div>
+              </div>
+              <div class="span4">
+                <div class="well well-small">
+                  My activity log
                 </div>
               </div>
             </div>
