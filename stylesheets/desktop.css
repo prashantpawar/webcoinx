@@ -1080,7 +1080,6 @@ a:hover {
 	font-size: 11px;
 	vertical-align: bottom;
 	color: #555;
-        margin-bottom: 5px;
 }
 
 
@@ -1227,4 +1226,8 @@ table.txlist tr td.detail img {
 
 .p2ptrade-form .control-label {
 	padding-top: 5px;
+}
+
+.p2ptrade-form .balance {
+    margin-bottom: 5px;
 }
