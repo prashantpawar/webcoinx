@@ -79,7 +79,15 @@ define([
         var colordefServers = cfg.get('colordefServers');
 
         txView = new TransactionView($('#main_tx_list'), colorMan);
-        var pgui = new P2pgui(wm, colorMan, exitNode, cfg);
+        var pgui = null;
+        $('#tabs').on('tabsactivate', function (event, ui) {
+                          // yikes... .attr('href') doesn't work for some reason
+                          if (!pgui && (ui.newPanel.attr('id') == "panel-p2ptrade")) { 
+                              pgui = new P2pgui(wm, colorMan, exitNode, cfg);
+                              var color = colorSelector.getColor()
+                              pgui.setCurrentColor(color !== '' ? color : false, (color !== '') ? colorMan.cmap(color).unit.toString() : "1");
+                          }
+                      });
 
         var btcBalance;
         var BTC_COLOR = "";
@@ -138,7 +146,8 @@ define([
         function updateBalance() {
             var color = colorSelector.getColor(); // '' = BTC
             console.log('@@@@' + color);
-            pgui.setCurrentColor(color !== '' ? color : false, (color !== '') ? colorMan.cmap(color).unit.toString() : "1");
+            if (pgui)
+                pgui.setCurrentColor(color !== '' ? color : false, (color !== '') ? colorMan.cmap(color).unit.toString() : "1");
             if (wallet.dirty > 0) {
                 overviewPanel.showUpdatingBalance();
             } else {
