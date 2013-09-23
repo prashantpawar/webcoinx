@@ -18,8 +18,8 @@
 
     <div id="tabs">
       <ul>
-        <li><a href="#panel-receive">Receive</a></li>
         <li><a href="#panel-overview">Overview</a></li>
+        <li><a href="#panel-receive">Receive</a></li>
         <li><a href="#panel-send">Send coins</a></li>
         <li><a href="#panel-issue">Issue coins</a></li>
         <li><a href="#panel-p2ptrade">P2P trade</a></li>
@@ -51,10 +51,11 @@
             </div>
             <form>
               <p>
-                <label for="color-selector-overview">Color: </label>
+                <label for="color-selector-overview">Asset/currency: </label>
                 <select id="color-selector-overview" class="color-selector"><option value="">BTC</option></select>
                 <button onclick="window.location.reload(true); return false;">Reload / sync</button>
               </p>
+              <p><strong>Note:</strong> you can add more assets to this list on 'Receive' tab. Or you can issue your own assets.</p>
               <p>
                 <label for="addr">Your <span class='colorind'>?</span> Address:</label>
                 <input id="addr" class="text medium" readonly="readonly"/>

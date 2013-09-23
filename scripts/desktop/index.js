@@ -84,7 +84,7 @@ define([
                           // yikes... .attr('href') doesn't work for some reason
                           if (!pgui && (ui.newPanel.attr('id') == "panel-p2ptrade")) { 
                               pgui = new P2pgui(wm, colorMan, exitNode, cfg);
-                              var color = colorSelector.getColor()
+                              var color = colorSelector.getColor();
                               pgui.setCurrentColor(color !== '' ? color : false, (color !== '') ? colorMan.cmap(color).unit.toString() : "1");
                           }
                       });
@@ -131,6 +131,7 @@ define([
                     'name': 'testing'
                 });
                 cfg.apply({have_wallet: 1});
+                location.reload();
             }, 300);
         }
 
