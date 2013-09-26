@@ -242,11 +242,13 @@ define(
         };
 
         function EWallet(wm,cm,exit) {
-            // here we go again :(
             var self = this;
-            $(wm).bind('walletInit', function(e) {
-                           self.wallet = e.newWallet.wallet;
-                       });
+            self.wallet = wm.activeWallet.wallet;
+            if (!self.wallet) {
+                $(wm).bind('walletInit', function(e) {
+                               self.wallet = e.newWallet.wallet;
+                           });
+            }
             this.exit = exit;
             this.wm = wm;
             this.cm = cm;
