@@ -44,8 +44,8 @@ define([
             $('#exitnode_status').addClass(statusClass);
         },
 		attachPanel = function ($element) {
-			$('#tabs').append($element);
-            $('#tabs').tabs();
+		    $('#tabs').append($element);
+                    $('#tabs').tabs('refresh');
 		},
         render = function () {
             initHtmlPage();
